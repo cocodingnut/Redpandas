@@ -6,12 +6,14 @@ import { LikedPageComponent } from './features/chirrup/pages/liked-page/liked-pa
 import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
 import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
 import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
+import { ProfileEditWindowComponent } from './features/user/pages/profile-edit-window/profile-edit-window.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginWindowComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'liked', component: LikedPageComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'profile-edit', component: ProfileEditWindowComponent },
   { path: 'settings', component: SettingsPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

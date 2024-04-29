@@ -13,6 +13,7 @@ import { ChirrupModule } from './features/chirrup/chirrup.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http'
 import { AdminModule } from './features/admin/admin.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdminModule } from './features/admin/admin.module';
     UserModule,
     HttpClientModule,
     AdminModule,
+    FormsModule,
   ],
   providers: [
     DialogService

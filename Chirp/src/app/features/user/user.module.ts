@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     InputSwitchModule,
     FormsModule,
+    SharedModule
   ],
   exports: [
     UserInfoComponent,

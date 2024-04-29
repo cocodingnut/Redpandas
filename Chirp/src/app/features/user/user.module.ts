@@ -42,6 +42,9 @@ import { SharedModule } from '../../shared/shared.module';
     UserInfoComponent,
     ProfilePageComponent,
     ProfileEditWindowComponent
+  ],
+  providers: [
+    DialogService
   ]
 })
 export class UserModule { }

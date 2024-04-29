@@ -13,6 +13,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -32,7 +33,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     AvatarGroupModule,
     StyleClassModule,
     ButtonModule,
-    InputSwitchModule
+    InputSwitchModule,
+    FormsModule,
   ],
   exports: [
     UserInfoComponent,

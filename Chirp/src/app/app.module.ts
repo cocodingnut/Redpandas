@@ -28,7 +28,7 @@ import { AdminModule } from './features/admin/admin.module';
     SharedModule,
     UserModule,
     HttpClientModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [
     DialogService

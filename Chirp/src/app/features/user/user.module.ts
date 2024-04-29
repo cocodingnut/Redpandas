@@ -37,7 +37,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
   exports: [
     UserInfoComponent,
     ProfilePageComponent,
-    
+    ProfileEditWindowComponent
   ]
 })
 export class UserModule { }

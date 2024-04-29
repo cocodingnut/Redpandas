@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimeoutDirectiveComponent } from './timeout-directive.component';
+import { TimeoutDirectiveComponent } from './hide-directive.component';
 
 describe('TimeoutDirectiveComponent', () => {
   let component: TimeoutDirectiveComponent;

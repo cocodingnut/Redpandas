@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-timeout-directive',
-  templateUrl: './timeout-directive.component.html',
-  styleUrls: ['./timeout-directive.component.sass']
+  templateUrl: './hide-directive.component.html',
+  styleUrls: ['./hide-directive.component.sass']
 })
 export class TimeoutDirectiveComponent implements OnInit {
 

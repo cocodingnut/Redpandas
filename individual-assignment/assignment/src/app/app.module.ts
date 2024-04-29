@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TimeoutDirectiveComponent } from './timeout-directive/timeout-directive.component';
-import { AutoHideDirective } from './timeout-directive/auto-hide.directive';
-import { HidecontentPipe } from './timeout-directive/hidecontent.pipe';
+import { TimeoutDirectiveComponent } from './hide-directive/hide-directive.component';
+import { AutoHideDirective } from './hide-directive/auto-hide.directive';
+import { HidecontentPipe } from './hide-directive/hidecontent.pipe';
 
 @NgModule({
   declarations: [

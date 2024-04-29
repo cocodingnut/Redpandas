@@ -13,9 +13,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-
 
 
 @NgModule({
@@ -35,13 +33,7 @@ import { SharedModule } from '../../shared/shared.module';
     StyleClassModule,
     ButtonModule,
     InputSwitchModule,
-    FormsModule,
     SharedModule
-  ],
-  exports: [
-    UserInfoComponent,
-    ProfilePageComponent,
-    ProfileEditWindowComponent
   ],
   providers: [
     DialogService

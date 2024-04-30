@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AutoHideDirective } from './Apr-22/auto-hide.directive';
 import { AutoSubPipe } from './Apr-22/auto-sub.pipe';
 import { FormsModule } from '@angular/forms';
-import { TruncatePipe } from './Apr-22/truncate.pipe';
 
 
 @NgModule({
@@ -14,7 +13,6 @@ import { TruncatePipe } from './Apr-22/truncate.pipe';
     AppComponent,
     AutoHideDirective,
     AutoSubPipe,
-    TruncatePipe,
   ],
   imports: [
     BrowserModule,

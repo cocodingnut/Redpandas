@@ -14,6 +14,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isLogin = true;
+
   selectedButton: string = ''; // Variable to keep track of the selected button
 
   // Method to handle button click events
@@ -31,5 +33,12 @@ export class NavbarComponent implements OnInit {
     if (button === 'settings') {
       this.router.navigate(['settings'])
     }
+    if (button === 'login') {
+      this.router.navigate(['login'])
+    }
+  }
+
+  onTest() {
+    alert();
   }
 }

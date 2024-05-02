@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogCommunicationService } from '../register-window/dialog-communication.service';
 
 @Component({
   selector: 'app-profile-edit-window',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileEditWindowComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogCommunicationService: DialogCommunicationService) { }
 
   ngOnInit(): void {
   }
@@ -26,4 +27,10 @@ export class ProfileEditWindowComponent implements OnInit {
   selectedMonth: number = this.user.birth.getMonth() + 1; // Default to January
   selectedDay: number = this.user.birth.getDate() + 1; // Default to the 1st
   selectedYear: number = this.user.birth.getFullYear(); // Default to the current year
+
+  onClosePopupDialog() {
+    this.dialogCommunicationService.emitRegistrationSuccess();
+  }
 }
+
+

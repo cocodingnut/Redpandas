@@ -1,16 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
+import { DialogCommunicationService } from '../../pages/register-window/dialog-communication.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.sass']
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements OnDestroy {
 
-  constructor(private router: Router) { }
+  ref: DynamicDialogRef | undefined;
+  private unsubscribe$ = new Subject<void>();
 
-  ngOnInit(): void {
+  constructor(
+    private dialogService: DialogService,
+    private dialogCommunicationService: DialogCommunicationService
+  ) { }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  openProfileEditPopup(event: Event) {
+    event.preventDefault();
+
+    try {
+      this.ref = this.dialogService.open(ProfileEditWindowComponent, {
+        width: '25rem',
+        showHeader: false,
+        contentStyle: {
+          "max-height": "600px",
+          "overflow": "auto",
+          "border-radius": "25px" // Optional: Add border-radius for rounded corners
+        }
+      });
+
+      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
+        this.closeDialog();
+      })
+    } catch (error) {
+      console.error('Error opening dialog:', error);
+    }
+  }
+
+  closeDialog() {
+    if (this.ref) {
+      this.ref.close();
+    }
   }
 
   selectedButton = 'Posts';
@@ -43,8 +82,5 @@ export class UserInfoComponent implements OnInit {
     this.selectedButton = button;
   }
 
-  onEditButtonClicked() {
-    this.router.navigate(['profile-edit']);
-  }
 
 }

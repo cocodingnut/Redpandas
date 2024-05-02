@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'profile-edit', component: ProfileEditWindowComponent },
   { path: 'settings', component: SettingsPageComponent },
   { path: 'admin', component: AdminPageComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  //{ path: '', redirectTo: '/login', pathMatch: 'full' },
+  //{ path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

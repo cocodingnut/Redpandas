@@ -1,0 +1,25 @@
+<div class="chirrup-card">
+
+    <div class="header">
+        <div class="user-info">
+            <div class="avatar">
+                <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png" alt="User Avatar">
+            </div>
+            <div class="user-name">{{user.username}}</div>
+            <div class="splitter">&nbsp;·&nbsp;</div>
+            <div class="post-time"> {{getTimeDiff(user.time)}} days ago </div>
+        </div>
+        <div class="location">{{user.location}}</div>
+    </div>
+
+
+    <div class="chirrup-content">
+        {{user.text | showFirstCharacters}}
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+
+</div>

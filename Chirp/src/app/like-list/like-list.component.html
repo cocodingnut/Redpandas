@@ -1,3 +1,6 @@
-<div *ngFor="let user of users">
-    <app-card [user]="user"></app-card>
+<button (click)="onClick()">Show/Hide</button>
+<div *ngIf="isShown">
+    <div *ngFor="let user of users">
+        <app-card [user]="user"></app-card>
+    </div>
 </div>

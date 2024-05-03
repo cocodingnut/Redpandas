@@ -73,7 +73,11 @@ export class LikeListComponent implements OnInit {
         location: "Paris",
         text: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
     }
-];
+  ];
 
+  isShown = true;
 
+  onClick() {
+    this.isShown = !this.isShown;
+  }
 }

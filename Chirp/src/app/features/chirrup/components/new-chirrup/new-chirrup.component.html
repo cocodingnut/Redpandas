@@ -1,0 +1,28 @@
+<div class="new-chirrup" [formGroup]="chirrupForm">
+    <header>
+        <div class="avatar">
+            <img src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
+        </div>
+        <div class="input-container">
+            <i class="pi pi-pencil"></i>
+            <input type="text" formControlName="text" placeholder="Share something......">
+        </div>
+    </header>
+
+    <footer>
+        <div class="add-on">
+            <input hidden #imageInput>
+            <p-button icon="pi pi-image" (onClick)="imageInput.click()"></p-button>
+
+            <input hidden #videoInput>
+            <p-button icon="pi pi-video" (onClick)="videoInput.click()"></p-button>
+
+            <p-button icon="pi pi-map-marker"></p-button>
+        </div>
+
+        <div class="post-button">
+            <p-button (onClick)="postChirrup()">post </p-button>
+        </div>
+
+    </footer>
+</div>

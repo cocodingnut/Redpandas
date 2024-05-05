@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     this.theme = this.themeService.getCurrentTheme();
   }
 
-  private _isLogin = true;
+  private _isLogin = false;
 
   get isLogin(): boolean {
     return this._isLogin;
@@ -57,6 +57,9 @@ export class NavbarComponent implements OnInit {
     } else {
       if (button === 'login') {
         this.router.navigate(['login']);
+      }
+      if (button === 'settings') {
+        this.router.navigate(['settings']);
       }
     }
 

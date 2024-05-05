@@ -59,6 +59,7 @@ export class LoginWindowComponent implements OnDestroy {
         width: '25rem',
         showHeader: false,
         contentStyle: {
+          "background-color": "black",
           "max-height": "600px",
           "overflow": "auto",
           "border-radius": "25px" // Optional: Add border-radius for rounded corners

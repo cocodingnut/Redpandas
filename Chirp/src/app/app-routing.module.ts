@@ -6,6 +6,7 @@ import { LikedPageComponent } from './features/chirrup/pages/liked-page/liked-pa
 import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
 import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
 import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
+import { AdminRouterGuard } from './core/guard/admin-router.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginWindowComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'liked', component: LikedPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'settings', component: SettingsPageComponent },
-  { path: 'admin', component: AdminPageComponent },
+  { path: 'admin', component: AdminPageComponent, canActivate: [AdminRouterGuard] },
 ];
 
 @NgModule({

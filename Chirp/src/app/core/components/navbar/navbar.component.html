@@ -20,10 +20,10 @@
         <i class="pi pi-bars" 
                 [ngClass]="{'selected': selectedButton === 'settings' && isLogin}"
                 (click)="onButtonClick('settings')"></i>
-        <img *ngIf="!isLogin" 
+        <img *ngIf="isLogin" 
                 class="avatar"
                 src="https://p1.itc.cn/q_70/images03/20221110/066590f43af14f9fa7bde4b1b0259266.png">
-        <p-button *ngIf="isLogin"
+        <p-button *ngIf="!isLogin"
                 label="Log In"
                 (click)="onButtonClick('login')"></p-button>
 

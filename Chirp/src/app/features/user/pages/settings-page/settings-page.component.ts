@@ -49,6 +49,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
         contentStyle: {
           "max-height": "600px",
           "overflow": "auto",
+          "border": "1px solid #ccc",
           "border-radius": "25px" // Optional: Add border-radius for rounded corners
         }
       });

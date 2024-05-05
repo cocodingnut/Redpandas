@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     this.theme = this.themeService.getCurrentTheme();
   }
 
-  private _isLogin = true;
+  private _isLogin = false;
 
   get isLogin(): boolean {
     return this._isLogin;

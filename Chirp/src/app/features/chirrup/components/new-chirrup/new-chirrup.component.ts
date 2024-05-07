@@ -12,8 +12,7 @@ import { Chirrup } from '../../../../core/models/chirrup';
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
-  private loginSubscription: any;
-  isLogin: boolean = false;
+  isLogin: boolean | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -27,7 +26,7 @@ export class NewChirrupComponent {
       video: ['']
     });
 
-    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+    this.auth.loginStatus.subscribe(update => {
       this.isLogin = update;
     })
   }
@@ -37,7 +36,7 @@ export class NewChirrupComponent {
     const currName = localStorage.getItem('userName');
 
     const newChirrup = {
-      publisherName: (currName === null) ? '' : currName,
+      publisherName: (currName === null || !this.isLogin) ? '' : currName,
       content: {
         // image: "image not available",
         // video: "video not available",

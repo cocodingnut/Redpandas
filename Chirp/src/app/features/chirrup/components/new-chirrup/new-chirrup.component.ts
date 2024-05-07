@@ -35,7 +35,7 @@ export class NewChirrupComponent {
     const formData = this.chirrupForm.value;
     const currName = localStorage.getItem('userName');
 
-    const newChirrup = {
+    const newChirrup: Chirrup = {
       publisherName: (currName === null || !this.isLogin) ? '' : currName,
       content: {
         // image: "image not available",

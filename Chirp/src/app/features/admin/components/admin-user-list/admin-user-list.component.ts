@@ -10,7 +10,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class AdminUserListComponent implements OnInit {
 
-  selectedIndex: number | null = null;
+  selectedIndex: number | undefined;
   usersList: User[] = [];
   selectedUser: User | undefined;
 

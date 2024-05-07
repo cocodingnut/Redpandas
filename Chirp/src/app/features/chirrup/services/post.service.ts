@@ -16,7 +16,7 @@ export class PostService {
 
   postChirrup(chirrup: Chirrup): Observable<any> {
     const url = `${this.apiUrl}/news`;
-    return this.http.post(this.apiUrl, chirrup).pipe(
+    return this.http.post(url, chirrup).pipe(
       catchError(error => {
         throw 'Error posting story: ' + error.message;
       })

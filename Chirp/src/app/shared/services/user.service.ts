@@ -8,6 +8,7 @@ import { User } from 'src/app/core/models/user';
 })
 export class UserService {
   userList: User[] = [];
+  private apiUrl: string = "http://localhost:4231/api";
 
   private userTmp: User = {
     userName: "",
@@ -24,11 +25,13 @@ export class UserService {
   }
 
   getAllData() {
-    return this.http.get<User[]>('http://localhost:4231/api/users/getAllUsers');
+    const url: string = `${this.apiUrl}/users/getAllUsers`;
+    return this.http.get<User[]>(url);
   }
 
   getUserInfo(userName: string) {
-    return this.http.get(`http://localhost:4231/api/users/getProfile/${userName}`)
+    const url: string = `${this.apiUrl}/users/getProfile/${userName}`
+    return this.http.get(url)
       .subscribe(
         res => {
           this.source.next(<User>res);

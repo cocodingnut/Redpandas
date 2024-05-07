@@ -7,12 +7,12 @@ import { Comment } from 'src/app/core/models/chirrup'; // Import your Comment in
   providedIn: 'root'
 })
 export class CommentService {
-  private apiUrl: string = "http://localhost:4231/api/"; // Adjust the base URL
+  private apiUrl: string = "http://localhost:4231/api"; // Adjust the base URL
 
   constructor(private http: HttpClient) { }
   
   addComment(chirrupId: string, comment: Comment) {
-    const url = `${this.apiUrl}news/addComment/${chirrupId}`; // Adjust the endpoint based on your backend API
+    const url = `${this.apiUrl}/news/addComment/${chirrupId}`; // Adjust the endpoint based on your backend API
     return this.http.patch<Comment>(url, comment) // Use PATCH method to add a comment
       .pipe(
         catchError(error => {

@@ -9,12 +9,13 @@ import { Chirrup } from 'src/app/core/models/chirrup';
 })
 export class PostService {
 
-  private apiUrl: string = "http://localhost:4231/api/news";
+  private apiUrl: string = "http://localhost:4231/api";
 
   constructor(private http: HttpClient, private sharedService: SharedService) { }
 
 
   postChirrup(chirrup: Chirrup): Observable<any> {
+    const url = `${this.apiUrl}/news`;
     return this.http.post(this.apiUrl, chirrup).pipe(
       catchError(error => {
         throw 'Error posting story: ' + error.message;

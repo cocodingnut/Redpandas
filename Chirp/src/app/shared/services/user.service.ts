@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Profile } from 'src/app/core/models/profile';
 import { User } from 'src/app/core/models/user';
 import { environment } from 'src/environments/environment';
 
@@ -11,17 +12,16 @@ export class UserService {
   userList: User[] = [];
   private apiUrl: string = environment.apiUrl;
 
-  private userTmp: User = {
+  private userTmp: Profile = {
     userName: "",
-    password: "",
     userEmail: ""
   }
 
-  private source: BehaviorSubject<User>;
-  private _currentUser: Observable<User>;
+  private source: BehaviorSubject<Profile>;
+  private _currentUser: Observable<Profile>;
 
   constructor(private http: HttpClient) {
-    this.source = new BehaviorSubject<User>(this.userTmp)
+    this.source = new BehaviorSubject<Profile>(this.userTmp)
     this._currentUser = this.source.asObservable();
   }
 
@@ -43,7 +43,7 @@ export class UserService {
     return this._currentUser;
   }
 
-  updateCurrentUser(updateUser: User) {
+  updateCurrentUser(updateUser: Profile) {
     this.source.next(updateUser);
   }
 }

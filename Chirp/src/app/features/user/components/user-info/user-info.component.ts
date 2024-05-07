@@ -3,8 +3,8 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
 import { Subject } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
-import { User } from 'src/app/core/models/user';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
+import { Profile } from 'src/app/core/models/profile';
 
 @Component({
   selector: 'app-user-info',
@@ -13,7 +13,7 @@ import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  user: User | undefined;
+  user: Profile | undefined;
 
   constructor(
     private userService: UserService,

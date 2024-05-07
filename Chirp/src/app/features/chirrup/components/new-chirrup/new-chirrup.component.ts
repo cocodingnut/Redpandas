@@ -35,7 +35,7 @@ export class NewChirrupComponent {
     const currName = localStorage.getItem('userName');
 
     const newChirrup = {
-      publisherName: (currName === null) ? '' : currName,
+      publisherName: (currName === null || !this.isLogin) ? '' : currName,
       content: {
         // image: "image not available",
         // video: "video not available",

@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { SharedService } from './shared.service';
 import { Chirrup } from 'src/app/core/models/chirrup';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private apiUrl: string = "http://localhost:4231/api";
+  private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient, private sharedService: SharedService) { }
 

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/core/models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   userList: User[] = [];
-  private apiUrl: string = "http://localhost:4231/api";
+  private apiUrl: string = environment.apiUrl;
 
   private userTmp: User = {
     userName: "",

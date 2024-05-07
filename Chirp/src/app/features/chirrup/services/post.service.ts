@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
-import { SharedService } from './shared.service';
 import { Chirrup } from 'src/app/core/models/chirrup';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +11,7 @@ export class PostService {
 
   private apiUrl: string = environment.apiUrl;
 
-  constructor(private http: HttpClient, private sharedService: SharedService) { }
+  constructor(private http: HttpClient) { }
 
 
   postChirrup(chirrup: Chirrup): Observable<any> {

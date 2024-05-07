@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { catchError } from 'rxjs';
 import { Comment } from 'src/app/core/models/chirrup'; // Import your Comment interface
 import { environment } from 'src/environments/environment';
 
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommentService {
-  private apiUrl: string = environment.apiUrl; // Adjust the base URL
+  private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
   

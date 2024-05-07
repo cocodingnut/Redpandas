@@ -21,7 +21,7 @@ export class UserService {
   private _currentUser: Observable<Profile>;
 
   constructor(private http: HttpClient) {
-    this.source = new BehaviorSubject<Profile>(this.userTmp)
+    this.source = new BehaviorSubject<Profile>(this.userTmp);
     this._currentUser = this.source.asObservable();
   }
 
@@ -31,7 +31,7 @@ export class UserService {
   }
 
   getUserInfo(userName: string) {
-    const url: string = `${this.apiUrl}/users/getProfile/${userName}`
+    const url: string = `${this.apiUrl}/users/getProfile/${userName}`;
     this.http.get(url)
       .subscribe(
         res => {

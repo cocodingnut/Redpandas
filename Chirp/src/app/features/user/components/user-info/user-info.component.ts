@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Component, OnInit } from '@angular/core';
 import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
-import { Subject } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 import { Profile } from 'src/app/core/models/profile';
@@ -22,6 +20,7 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     const currName = localStorage.getItem('userName');
+    // TODO: logic refactor
     if (currName !== null) {
       this.userService.getUserInfo(currName);
     }
@@ -30,8 +29,7 @@ export class UserInfoComponent implements OnInit {
     })
   }
 
-  openProfileEditPopup(event: Event) {
-    event.preventDefault();
+  openProfileEditPopup() {
     this.popup.openPopUp(ProfileEditWindowComponent);
   }
 

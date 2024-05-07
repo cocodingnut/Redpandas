@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Chirrup } from '../../../../core/models/chirrup';
 
 @Component({
   selector: 'app-new-chirrup',
@@ -49,10 +50,8 @@ export class NewChirrupComponent {
 
 
     this.PostService.postChirrup(newChirrup).subscribe({
-      next: () => {
-        // 发送成功后通知 chirrup-list 组件刷新
-        this.sharedService.notifyChirrupListRefresh();
-        // 清空表单
+      next: (chirrup: Chirrup) => {
+        this.sharedService.emitChirrup(newChirrup);
         this.chirrupForm.reset();
         alert("you have successfully posted a new chirrup!");
       },

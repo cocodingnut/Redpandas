@@ -23,9 +23,11 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadChirrups();
-    // 订阅共享服务的刷新通知
-    this.refreshSubscription = this.sharedService.getChirrupListRefreshNotifier().subscribe(() => {
-      this.loadChirrups(); // 收到通知后刷新数据
+
+    this.refreshSubscription = this.sharedService.getChirrupListRefreshNotifier().subscribe(chirrup => {
+      // chirrup.publishedTime = "just now";
+      console.log(chirrup)
+      this.news = [chirrup, ...this.news];
     });
   }
 

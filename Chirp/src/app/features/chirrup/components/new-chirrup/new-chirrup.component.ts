@@ -11,8 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
-  private loginSubscription: any;
-  isLogin: boolean = false;
+  isLogin: boolean | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +25,7 @@ export class NewChirrupComponent {
       video: ['']
     });
 
-    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+    this.auth.loginStatus.subscribe(update => {
       this.isLogin = update;
     })
   }

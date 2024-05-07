@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   theme: string = 'lara-light-indigo';
 
-  private _isLogin: boolean = false;
+  private _isLogin: boolean | undefined;
 
   constructor(
     private router: Router,

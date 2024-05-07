@@ -43,12 +43,12 @@ export class AuthService {
     })
   }
 
-  checkExistByName(username: string) {
-    return this.http.get(`${this.apiUrl}/register/checkExistByUsername/${username}`);
+  checkExistByName(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/register/checkExistByUsername/${username}`);
   }
 
-  checkExistByEmail(email: string) {
-    return this.http.get(`${this.apiUrl}/register/checkExistByEmail/${email}`);
+  checkExistByEmail(email: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/register/checkExistByEmail/${email}`);
   }
 
   changeLoginStatus(status: boolean) {

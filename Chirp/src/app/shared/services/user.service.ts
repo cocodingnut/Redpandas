@@ -25,21 +25,22 @@ export class UserService {
     this._currentUser = this.source.asObservable();
   }
 
-  getAllData() {
+  getAllData(): Observable<User[]> {
     const url: string = `${this.apiUrl}/users/getAllUsers`;
     return this.http.get<User[]>(url);
   }
 
   getUserInfo(userName: string) {
     const url: string = `${this.apiUrl}/users/getProfile/${userName}`
-    return this.http.get(url)
+    this.http.get(url)
       .subscribe(
         res => {
           this.source.next(<User>res);
-        });
+        }
+      );
   }
 
-  get currentUser() {
+  get currentUser(): Observable<Profile> {
     return this._currentUser;
   }
 

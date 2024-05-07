@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GetChirrupsService } from '../../services/get-chirrups.service';
-import { Chirrup, Comment, Content } from '../../../core/models/chirrup';
+import { Chirrup, Comment } from '../../../core/models/chirrup';
 import { CommentService } from 'src/app/features/chirrup/services/comment.service';
 import { SharedService } from 'src/app/features/chirrup/services/shared.service';
 
@@ -33,7 +33,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     this.refreshSubscription.unsubscribe();
   }
 
-
+  // To Joyce: 麻烦帮我加一下return, 看不太懂，谢谢
   loadChirrups() {
     this.getChirrupsService.getNews().subscribe({
       next: (data: Chirrup[]) => {
@@ -44,10 +44,10 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
             const storedIsLiked = localStorage.getItem(item._id);
             isLiked = storedIsLiked === 'true'; // 如果storedIsLiked为'true'，则isLiked为true
             if (storedIsLiked != null) {
-              console.log(isLiked)
+              // console.log(isLiked)
             }
           }
-          console.log(isLiked)
+          // console.log(isLiked)
           return {
             ...item,
             islike: isLiked,

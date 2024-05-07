@@ -12,17 +12,7 @@ export class AdminUserListComponent implements OnInit {
 
   selectedIndex: number | null = null;
   usersList: User[] = [];
-  selectedUser: User | undefined = {
-    "_id": "6205e49f223876263058315a",
-    "name": "CallbackCats",
-    "userName": "CallbackCats",
-    "userEmail": "group.callbackcats@gmail.com",
-    "password": "$2a$10$d8QWXUh",
-    "userRole": "admin",
-    "age": 33,
-    "gender": "Male",
-    "phone": 1234567890,
-  };
+  selectedUser: User | undefined;
 
   constructor(private users: UserService, private auth: AuthService) { }
 

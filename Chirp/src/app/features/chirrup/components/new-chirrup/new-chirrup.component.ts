@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Chirrup } from 'src/app/core/models/chirrup';
 
 @Component({
   selector: 'app-new-chirrup',
@@ -36,7 +35,7 @@ export class NewChirrupComponent {
     const formData = this.chirrupForm.value;
     const currName = localStorage.getItem('userName');
 
-    const newChirrup: Chirrup = {
+    const newChirrup = {
       publisherName: (currName === null) ? '' : currName,
       content: {
         // image: "image not available",

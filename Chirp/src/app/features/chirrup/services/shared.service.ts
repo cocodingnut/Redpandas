@@ -7,17 +7,12 @@ import { Subject, Observable } from 'rxjs';
 export class SharedService {
   private newChirrupSubject = new Subject<void>();
 
-  /**
-   * Notify any component subscribed this service for change
-   */
+  // 用于通知 chirrup-list 刷新的方法
   notifyChirrupListRefresh(): void {
     this.newChirrupSubject.next();
   }
 
-  /**
-   * Get an observable to subscribe in order to receive broadcast of notification
-   * @returns Observable<void>
-   */
+  // 获取一个 Observable，用于 chirrup-list 监听通知
   getChirrupListRefreshNotifier(): Observable<void> {
     return this.newChirrupSubject.asObservable();
   }

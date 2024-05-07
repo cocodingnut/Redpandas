@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Chirrup } from 'src/app/core/models/chirrup';
 
 @Component({
   selector: 'app-new-chirrup',
@@ -11,7 +12,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
-  isLogin: boolean | undefined;
+  private loginSubscription: any;
+  isLogin: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -25,7 +27,7 @@ export class NewChirrupComponent {
       video: ['']
     });
 
-    this.auth.loginStatus.subscribe(update => {
+    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
       this.isLogin = update;
     })
   }
@@ -34,8 +36,8 @@ export class NewChirrupComponent {
     const formData = this.chirrupForm.value;
     const currName = localStorage.getItem('userName');
 
-    const newChirrup = {
-      publisherName: (currName === null || !this.isLogin) ? '' : currName,
+    const newChirrup: Chirrup = {
+      publisherName: (currName === null) ? '' : currName,
       content: {
         // image: "image not available",
         // video: "video not available",

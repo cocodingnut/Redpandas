@@ -24,15 +24,15 @@ export class AdminUserListComponent implements OnInit {
 
   onAddNew(){
     console.log("gonna add new");
-    this.auth.loginAuth("redpanda@gmail.com", "chirp");
   }
-  // TODO: try not display user when click delete
+
   onSelectUser(index: number){
     this.selectedIndex = index;
     this.selectedUser = this.usersList[index];
   }
 
   onDeleteUser(index: number){
+    // TODO: find a way to change this deprecated line
     event?.stopPropagation();
     console.log("gonna delete #"+this.usersList[index]._id);
   }

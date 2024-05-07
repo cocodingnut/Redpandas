@@ -23,7 +23,7 @@ export class AdminUserListComponent implements OnInit {
   }
 
   onAddNew(){
-    console.log("gonna add new");
+    console.log('gonna add new');
   }
 
   onSelectUser(index: number){
@@ -34,6 +34,6 @@ export class AdminUserListComponent implements OnInit {
   onDeleteUser(index: number){
     // TODO: find a way to change this deprecated line
     event?.stopPropagation();
-    console.log("gonna delete #"+this.usersList[index]._id);
+    console.log(`gonna delete #${this.usersList[index]._id}`);
   }
 }

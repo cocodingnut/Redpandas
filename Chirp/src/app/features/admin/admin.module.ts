@@ -10,10 +10,15 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     AdminUserInfoComponent,
     AdminPanelComponent,
   ],
+  
   imports: [
     CommonModule
   ],
+
   exports: [
+  ],
+
+  providers: [
   ]
 })
 export class AdminModule { }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChirrupCardComponent } from './components/chirrup-card/chirrup-card.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -18,6 +19,10 @@ import { ChirrupCardComponent } from './components/chirrup-card/chirrup-card.com
 
   exports: [
     ChirrupCardComponent,
+  ],
+  
+  providers: [
+    DialogService
   ]
 
 

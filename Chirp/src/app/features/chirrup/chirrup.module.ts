@@ -23,6 +23,7 @@ import { ReversePipe } from './pipes/reverse.pipe';
     TruncatePipe,
     TruncateAvatarPipe
   ],
+
   imports: [
     CommonModule,
     ButtonModule,
@@ -30,11 +31,15 @@ import { ReversePipe } from './pipes/reverse.pipe';
     ReactiveFormsModule,
     FormsModule
   ],
+
   exports: [
     NewChirrupComponent,
     HomePageComponent,
     LikedPageComponent,
   ],
+
+  providers: [
+  ]
 
 })
 export class ChirrupModule { }

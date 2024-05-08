@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({

@@ -5,7 +5,7 @@ import { ChangePasswordWindowComponent } from '../../components/change-password-
 import { Subject } from 'rxjs';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 
 @Component({

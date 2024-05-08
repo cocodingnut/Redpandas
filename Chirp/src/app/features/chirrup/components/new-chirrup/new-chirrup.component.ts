@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { SharedService } from '../../services/shared.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-new-chirrup',

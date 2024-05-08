@@ -3,7 +3,7 @@ import { RegisterWindowComponent } from '../register-window/register-window.comp
 import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 
 @Component({

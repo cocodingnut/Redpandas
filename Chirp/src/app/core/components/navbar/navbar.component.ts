@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginWindowComponent } from 'src/app/features/user/components/login-window/login-window.component';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 

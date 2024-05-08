@@ -8,6 +8,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.component';
+import { TruncateAvatarPipe } from './pipes/truncate-avatar.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 
 
@@ -17,7 +19,9 @@ import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.com
     HomePageComponent,
     LikedPageComponent,
     ChirrupListComponent,
-    TruncatePipe
+    ReversePipe,
+    TruncatePipe,
+    TruncateAvatarPipe
   ],
   imports: [
     CommonModule,

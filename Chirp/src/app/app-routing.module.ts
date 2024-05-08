@@ -5,7 +5,7 @@ import { HomePageComponent } from './features/chirrup/pages/home-page/home-page.
 import { LikedPageComponent } from './features/chirrup/pages/liked-page/liked-page.component';
 import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
 import { LoginWindowComponent } from './features/user/components/login-window/login-window.component';
-import { AdminUserListComponent } from './features/admin/components/admin-user-list/admin-user-list.component';
+import { AdminPanelComponent } from './features/admin/components/admin-panel/admin-panel.component';
 import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'liked', component: LikedPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'settings', component: SettingsPageComponent },
-  { path: 'admin', component: AdminUserListComponent, canActivate: [AdminGuard] },
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },
   { path: '', component: HomePageComponent },
 ];
 

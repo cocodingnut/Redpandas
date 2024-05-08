@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminUserListComponent } from './components/admin-user-list/admin-user-list.component';
 import { AdminUserInfoComponent } from './components/admin-user-info/admin-user-info.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 
 
 @NgModule({
   declarations: [
-    AdminUserListComponent,
     AdminUserInfoComponent,
+    AdminPanelComponent,
   ],
   imports: [
     CommonModule

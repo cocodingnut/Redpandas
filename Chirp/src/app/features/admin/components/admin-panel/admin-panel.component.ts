@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-admin-user-list',
-  templateUrl: './admin-user-list.component.html',
-  styleUrls: ['./admin-user-list.component.sass']
+  selector: 'app-admin-panel',
+  templateUrl: './admin-panel.component.html',
+  styleUrls: ['./admin-panel.component.sass']
 })
-export class AdminUserListComponent implements OnInit {
+export class AdminPanelComponent implements OnInit {
 
   selectedIndex: number | undefined;
   usersList: User[] = [];

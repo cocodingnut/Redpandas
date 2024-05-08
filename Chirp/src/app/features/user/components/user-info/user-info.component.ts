@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
+import { ProfileEditWindowComponent } from '../profile-edit-window/profile-edit-window.component';
 import { UserService } from 'src/app/shared/services/user.service';
 import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 import { Profile } from 'src/app/core/models/profile';

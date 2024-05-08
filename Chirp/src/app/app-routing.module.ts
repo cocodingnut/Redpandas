@@ -4,7 +4,7 @@ import { ProfilePageComponent } from './features/user/pages/profile-page/profile
 import { HomePageComponent } from './features/chirrup/pages/home-page/home-page.component';
 import { LikedPageComponent } from './features/chirrup/pages/liked-page/liked-page.component';
 import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
-import { LoginWindowComponent } from './features/user/pages/login-window/login-window.component';
+import { LoginWindowComponent } from './features/user/components/login-window/login-window.component';
 import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
 
 import { AdminGuard } from './core/guards/admin.guard';

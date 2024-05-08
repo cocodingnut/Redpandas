@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginWindowComponent } from './pages/login-window/login-window.component';
+import { LoginWindowComponent } from './components/login-window/login-window.component';
 import { Routes } from '@angular/router';
 
 const routes: Routes = [

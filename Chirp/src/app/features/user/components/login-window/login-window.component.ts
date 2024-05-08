@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RegisterWindowComponent } from '../register-window/register-window.component';
-import { DialogCommunicationService } from '../../../../shared/services/dialog-communication.service';
+import { DialogCommunicationService } from '../../../../core/services/dialog-communication.service';
 import { Observable, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { DialogControlService } from 'src/app/shared/services/dialog-control.service';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 @Component({
   selector: 'app-login-window',

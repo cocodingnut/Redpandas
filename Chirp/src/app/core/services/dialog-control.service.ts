@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DialogCommunicationService } from 'src/app/shared/services/dialog-communication.service';
+import { DialogCommunicationService } from 'src/app/core/services/dialog-communication.service';
 
 @Injectable({
   providedIn: 'root'

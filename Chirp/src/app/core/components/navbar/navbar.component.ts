@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginWindowComponent } from 'src/app/features/user/components/login-window/login-window.component';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ThemeService } from 'src/app/shared/services/theme.service';
-import { DialogControlService } from 'src/app/shared/services/dialog-control.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 
 @Component({

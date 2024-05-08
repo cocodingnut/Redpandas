@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangePasswordWindowComponent } from '../../components/change-password-window/change-password-window.component';
-import { ThemeService } from 'src/app/shared/services/theme.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { DialogControlService } from 'src/app/shared/services/dialog-control.service';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 @Component({
   selector: 'app-settings-page',

@@ -6,7 +6,7 @@ import { Chirrup } from '../../../../core/models/chirrup';
   selector: 'app-liked-page',
   templateUrl: './liked-page.component.html',
   styleUrls: ['./liked-page.component.sass',
-    '../../../../shared/components/chirrup-list/chirrup-list.component.sass',
+    '../../components/chirrup-list/chirrup-list.component.sass',
     '../../../../shared/components/chirrup-card/chirrup-card.component.sass'
   ]
 })

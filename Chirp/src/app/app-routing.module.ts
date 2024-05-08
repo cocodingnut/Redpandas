@@ -5,16 +5,16 @@ import { HomePageComponent } from './features/chirrup/pages/home-page/home-page.
 import { LikedPageComponent } from './features/chirrup/pages/liked-page/liked-page.component';
 import { SettingsPageComponent } from './features/user/pages/settings-page/settings-page.component';
 import { LoginWindowComponent } from './features/user/components/login-window/login-window.component';
-import { AdminPageComponent } from './features/admin/pages/admin-page/admin-page.component';
-
+import { AdminUserListComponent } from './features/admin/components/admin-user-list/admin-user-list.component';
 import { AdminGuard } from './core/guards/admin.guard';
+
 const routes: Routes = [
   { path: 'login', component: LoginWindowComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'liked', component: LikedPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'settings', component: SettingsPageComponent },
-  { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard] },
+  { path: 'admin', component: AdminUserListComponent, canActivate: [AdminGuard] },
   { path: '', component: HomePageComponent },
 ];
 

@@ -18,7 +18,7 @@ export class LoginWindowComponent {
   constructor(
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
-    private auth: AuthService,
+    private authService: AuthService,
     private dialogService: DialogControlService
   ) { }
 
@@ -35,7 +35,7 @@ export class LoginWindowComponent {
   }
 
   onSubmit() {
-    this.auth.loginAuth(this.emailControl.value, this.passwordControl.value);
+    this.authService.loginAuth(this.emailControl.value, this.passwordControl.value);
     this.onClosePopupDialog();
   }
 
@@ -50,7 +50,7 @@ export class LoginWindowComponent {
 
   emailExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.auth.checkExistByEmail(control.value).pipe(
+      return this.authService.checkExistByEmail(control.value).pipe(
         map((emailExist) => {
           return emailExist ? null : { userNotFound: 'Email address not found' }
         }, catchError(() => {

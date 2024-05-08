@@ -18,7 +18,7 @@ export class NewChirrupComponent {
     private fb: FormBuilder,
     private PostService: PostService,
     private sharedService: SharedService,
-    private auth: AuthService
+    private authService: AuthService
   ) {
     this.chirrupForm = this.fb.group({
       text: ['', Validators.required],
@@ -26,7 +26,7 @@ export class NewChirrupComponent {
       video: ['']
     });
 
-    this.loginSubscription = this.auth.loginStatus.subscribe(update => {
+    this.loginSubscription = this.authService.loginStatus.subscribe(update => {
       this.isLogin = update;
     })
   }

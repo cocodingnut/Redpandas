@@ -16,7 +16,7 @@ export class RegisterWindowComponent {
   constructor(
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
-    private auth: AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -79,7 +79,7 @@ export class RegisterWindowComponent {
 
   emailNotExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.auth.checkExistByEmail(control.value).pipe(
+      return this.authService.checkExistByEmail(control.value).pipe(
         map((emailExist) => {
           return emailExist ? { emailAlreadyExist: 'Email address already exist' } : null
         }, catchError(() => {
@@ -91,7 +91,7 @@ export class RegisterWindowComponent {
 
   nameNotExistsValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.auth.checkExistByName(control.value).pipe(
+      return this.authService.checkExistByName(control.value).pipe(
         map((nameExist) => {
           return nameExist ? { userAlreadyExist: 'userName already exist' } : null
         }, catchError(() => {
@@ -107,7 +107,7 @@ export class RegisterWindowComponent {
 
   onSubmit() {
     // post
-    this.auth.registerUser({userName: this.usernameControl.value, userEmail: this.emailControl.value, password: this.passwordControl.value});
+    this.authService.registerUser({userName: this.usernameControl.value, userEmail: this.emailControl.value, password: this.passwordControl.value});
     this.onClosePopupDialog();
   }
 

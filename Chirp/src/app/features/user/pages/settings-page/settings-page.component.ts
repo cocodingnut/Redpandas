@@ -19,13 +19,13 @@ export class SettingsPageComponent implements OnInit {
   constructor(    
     private themeService: ThemeService,
     private router: Router,
-    private auth: AuthService,
+    private authService: AuthService,
     private dialogService: DialogControlService,
   ) { }
 
   ngOnInit(): void {
     this.isDark = this.themeService.getCurrentTheme() === 'lara-dark-indigo';
-    this.auth.loginStatus.subscribe(update => {
+    this.authService.loginStatus.subscribe(update => {
       this._isLogin = update;
     })
   }
@@ -51,7 +51,7 @@ export class SettingsPageComponent implements OnInit {
   onLogOut() {
     localStorage.setItem("userName", '');
     localStorage.setItem("userRole", '');
-    this.auth.changeLoginStatus(false);
+    this.authService.changeLoginStatus(false);
     alert('See you later');
   }
 }

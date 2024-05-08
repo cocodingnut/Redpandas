@@ -20,13 +20,13 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private themeService: ThemeService,
-    private auth: AuthService,
+    private authService: AuthService,
     private dialogService: DialogControlService,
   ) { }
 
   ngOnInit(): void {
     this.theme = this.themeService.getCurrentTheme();
-    this.auth.loginStatus.subscribe(update => {
+    this.authService.loginStatus.subscribe(update => {
       this._isLogin = update;
     })
   }

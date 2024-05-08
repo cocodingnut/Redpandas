@@ -5,8 +5,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LikedPageComponent } from './pages/liked-page/liked-page.component';
 import { ButtonModule } from 'primeng/button';
 import { SharedModule } from '../../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ChirrupListComponent } from './components/chirrup-list/chirrup-list.component';
 
 
 
@@ -15,6 +16,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     NewChirrupComponent,
     HomePageComponent,
     LikedPageComponent,
+    ChirrupListComponent,
     TruncatePipe
   ],
   imports: [
@@ -22,7 +24,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     ButtonModule,
     SharedModule,
     ReactiveFormsModule,
-
+    FormsModule
   ],
   exports: [
     NewChirrupComponent,

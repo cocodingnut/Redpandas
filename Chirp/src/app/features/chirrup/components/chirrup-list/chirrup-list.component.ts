@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GetChirrupsService } from '../../../features/chirrup/services/get-chirrups.service';
-import { Chirrup, Comment, Content } from '../../../core/models/chirrup';
+import { GetChirrupsService } from '../../services/get-chirrups.service';
+import { Chirrup, Comment, Content } from '../../../../core/models/chirrup';
 import { CommentService } from 'src/app/features/chirrup/services/comment.service';
 import { SharedService } from 'src/app/features/chirrup/services/shared.service';
 
 @Component({
   selector: 'app-chirrup-list',
   templateUrl: './chirrup-list.component.html',
-  styleUrls: ['./chirrup-list.component.sass', '../chirrup-card/chirrup-card.component.sass']
+  styleUrls: ['./chirrup-list.component.sass', './chirrup-card.component.sass']
 })
 export class ChirrupListComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  userList: User[] = [];
+  
   private apiUrl: string = environment.apiUrl;
 
   private userTmp: Profile = {
@@ -23,11 +23,6 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.source = new BehaviorSubject<Profile>(this.userTmp);
     this._currentUser = this.source.asObservable();
-  }
-
-  getAllData(): Observable<User[]> {
-    const url: string = `${this.apiUrl}/users/getAllUsers`;
-    return this.http.get<User[]>(url);
   }
 
   getUserInfo(userName: string) {

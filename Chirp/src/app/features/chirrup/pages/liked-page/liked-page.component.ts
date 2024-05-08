@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetChirrupsService } from '../../../../shared/services/get-chirrups.service';
+import { GetChirrupsService } from '../../services/get-chirrups.service';
 import { Chirrup } from '../../../../core/models/chirrup';
 
 @Component({

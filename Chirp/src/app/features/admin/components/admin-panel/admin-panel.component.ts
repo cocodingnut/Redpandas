@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { UserService } from 'src/app/shared/services/user.service';
+import { AdminService } from 'src/app/features/admin/services/admin.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -14,10 +14,10 @@ export class AdminPanelComponent implements OnInit {
   usersList: User[] = [];
   selectedUser: User | undefined;
 
-  constructor(private users: UserService, private auth: AuthService) { }
+  constructor(private adminService: AdminService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.users.getAllData().subscribe((res) => {
+    this.adminService.getAllData().subscribe((res) => {
       this.usersList = [...res];
     });
   }

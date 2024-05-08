@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileEditWindowComponent } from '../profile-edit-window/profile-edit-window.component';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from 'src/app/core/services/user.service';
 import { Profile } from 'src/app/core/models/profile';
 import { DialogControlService } from 'src/app/shared/services/dialog-control.service';
 

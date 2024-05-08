@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/core/models/user';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AdminService {
   
   userList: User[] = [];

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginWindowComponent } from 'src/app/features/user/components/login-window/login-window.component';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
 import { ThemeService } from 'src/app/shared/services/theme.service';
+import { DialogControlService } from 'src/app/shared/services/dialog-control.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private themeService: ThemeService,
     private auth: AuthService,
-    private popup: OpenPopUpService,
+    private dialogService: DialogControlService,
   ) { }
 
   ngOnInit(): void {
@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
       }
     } else {
       if (button === 'login') {
-        this.popup.openPopUp(LoginWindowComponent);
+        this.dialogService.openPopUp(LoginWindowComponent);
       }
     }
 

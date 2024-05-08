@@ -5,7 +5,7 @@ import { DialogCommunicationService } from 'src/app/shared/services/dialog-commu
 @Injectable({
   providedIn: 'root'
 })
-export class OpenPopUpService {
+export class DialogControlService {
 
   ref: DynamicDialogRef | undefined;
 
@@ -23,11 +23,11 @@ export class OpenPopUpService {
           "max-height": "750px",
           "overflow": "auto",
           "border": "1px solid #ccc",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
+          "border-radius": "25px"
         }
       });
 
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
+      this.dialogCommunicationService.closeSignal$.subscribe(() => {
         this.closeDialog();
       })
     } catch (error) {

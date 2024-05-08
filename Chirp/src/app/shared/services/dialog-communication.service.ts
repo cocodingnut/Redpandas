@@ -5,11 +5,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DialogCommunicationService {
-  private registrationSuccessSubject = new Subject<void>();
+  private onCloseSignalSubject = new Subject<void>();
 
-  registrationSuccess$ = this.registrationSuccessSubject.asObservable();
+  closeSignal$ = this.onCloseSignalSubject.asObservable();
 
   emitRegistrationSuccess() {
-    this.registrationSuccessSubject.next();
+    this.onCloseSignalSubject.next();
   }
 }

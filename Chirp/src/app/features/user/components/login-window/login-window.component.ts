@@ -4,7 +4,7 @@ import { DialogCommunicationService } from '../../../../shared/services/dialog-c
 import { Observable, catchError, map, of } from 'rxjs';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { OpenPopUpService } from 'src/app/shared/services/open-pop-up.service';
+import { DialogControlService } from 'src/app/shared/services/dialog-control.service';
 
 @Component({
   selector: 'app-login-window',
@@ -19,7 +19,7 @@ export class LoginWindowComponent {
     private dialogCommunicationService: DialogCommunicationService,
     private fb: FormBuilder,
     private auth: AuthService,
-    private popup: OpenPopUpService
+    private dialogService: DialogControlService
   ) { }
 
 
@@ -62,7 +62,7 @@ export class LoginWindowComponent {
 
   openRegisterPopup() {
     this.onClosePopupDialog();
-    this.popup.openPopUp(RegisterWindowComponent);
+    this.dialogService.openPopUp(RegisterWindowComponent);
   }
 
   onClosePopupDialog() {

@@ -23,16 +23,14 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.refreshSubscription = this.chirrupService.news.subscribe(news => {
       this.news = news;
-      console.log(news);
     });
 
-    this.chirrupService.loadChirrups(); // 确保数据被加载
+    this.chirrupService.loadChirrups();
   }
 
   ngOnDestroy() {
     this.refreshSubscription.unsubscribe();
   }
-
 
   toggleHeartIcon(chirrup: Chirrup) {
     chirrup.islike = !chirrup.islike;

@@ -11,7 +11,7 @@ export class CommentService {
   private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
-  
+
   addComment(chirrupId: string, comment: Comment) {
     const url = `${this.apiUrl}/news/addComment/${chirrupId}`; // Adjust the endpoint based on your backend API
     return this.http.patch<Comment>(url, comment) // Use PATCH method to add a comment
@@ -22,6 +22,4 @@ export class CommentService {
         })
       );
   }
-
-  // You can add more methods here as needed, such as retrieving comments, updating comments, deleting comments, etc.
 }

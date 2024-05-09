@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GetChirrupsService } from '../../services/get-chirrups.service';
 import { Chirrup, Comment } from '../../../../core/models/chirrup';
 import { CommentService } from '../../services/comment.service';
-import { SharedService } from '../../services/shared.service';
+import { ChirrupService } from '../../services/chirrup.service';
+
 
 @Component({
   selector: 'app-chirrup-list',
@@ -16,49 +16,21 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   private refreshSubscription: Subscription;
 
   constructor(
-    private getChirrupsService: GetChirrupsService,
     private commentService: CommentService,
-    private sharedService: SharedService
+    private chirrupService: ChirrupService
   ) { this.refreshSubscription = new Subscription(); }
 
   ngOnInit() {
-    this.loadChirrups();
-    // 订阅共享服务的刷新通知
-    this.refreshSubscription = this.sharedService.getChirrupListRefreshNotifier().subscribe(() => {
-      this.loadChirrups(); // 收到通知后刷新数据
+    this.refreshSubscription = this.chirrupService.news.subscribe(news => {
+      this.news = news;
+      console.log(news);
     });
+
+    this.chirrupService.loadChirrups(); // 确保数据被加载
   }
 
   ngOnDestroy() {
     this.refreshSubscription.unsubscribe();
-  }
-
-
-  loadChirrups() {
-    this.getChirrupsService.getNews().subscribe({
-      next: (data: Chirrup[]) => {
-
-        this.news = data.map((item: Chirrup) => {
-          let isLiked = false; // 默认isLiked为false
-          if (item._id !== undefined) {
-            const storedIsLiked = localStorage.getItem(item._id);
-            isLiked = storedIsLiked === 'true'; // 如果storedIsLiked为'true'，则isLiked为true
-            if (storedIsLiked != null) {
-              console.log(isLiked)
-            }
-          }
-          console.log(isLiked)
-          return {
-            ...item,
-            islike: isLiked,
-            showComments: false,
-          };
-        });
-      },
-      error: (error) => {
-        console.error('There was an error!', error);
-      }
-    });
   }
 
 
@@ -94,7 +66,8 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
       next: _resp => {
         this.newCommentText = '';
         // After posting the comment, fetch the updated chirrups to display the new comment
-        this.loadChirrups();
+        // this.loadChirrups();
+        this.chirrupService.news;
         alert("you have successfully added a new comment!");
       },
       error: _err => console.log("Error posing new comment:", _err)

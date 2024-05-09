@@ -30,7 +30,7 @@ export class NewChirrupComponent {
     });
   }
 
-  postChirrup() {
+  onClickSubmitChirrup() {
     if (!this.isLogin) {
       alert("Please log in to post a chirrup.");
       return;
@@ -43,7 +43,7 @@ export class NewChirrupComponent {
       publisherName: currName || '',
       content: {
         text: formData.text,
-        image: formData.image || "image not available", // 可选的默认值
+        image: formData.image || "image not available",
         video: formData.video || "video not available"
       },
       publishedTime: new Date().toISOString(),
@@ -53,7 +53,7 @@ export class NewChirrupComponent {
 
     this.chirrupService.postChirrup(newChirrup).subscribe({
       next: () => {
-        this.chirrupService.notifyChirrupListRefresh();
+        // this.chirrupService.notifyChirrupListRefresh();
         this.chirrupForm.reset();
         alert("You have successfully posted a new chirrup!");
       },
@@ -62,6 +62,7 @@ export class NewChirrupComponent {
         alert("Failed to post chirrup. Please try again.");
       }
     });
+
   }
 
   ngOnDestroy() {

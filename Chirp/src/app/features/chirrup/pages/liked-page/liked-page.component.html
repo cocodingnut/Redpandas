@@ -13,9 +13,9 @@
 
     <div class="chirrup-content"> {{ chirrup.content?.text | truncate }} </div>
     <div class="chirrup-content">
-        <img *ngIf="chirrup.content?.image" alt="chirrup-image" class="square-image"
+        <img *ngIf="chirrup.content?.image!== 'no image'" alt="chirrup-image" class="square-image"
             src="{{ chirrup.content?.image }}" />
-        <!-- <video *ngIf="chirrup.content?.video" controls>
+        <!-- <video *ngIf="chirrup.content?.video!== 'no video'" controls>
             <source src="{{ chirrup.content?.video }}" type="video/mp4">
         </video> -->
     </div>

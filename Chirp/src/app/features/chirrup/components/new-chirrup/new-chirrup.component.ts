@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ChirrupService } from '../../services/chirrup.service'; // 确保服务的路径正确
+import { ChirrupService } from '../../services/chirrup.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Chirrup } from '../../../../core/models/chirrup'
 
 @Component({
   selector: 'app-new-chirrup',
@@ -16,7 +17,7 @@ export class NewChirrupComponent {
 
   constructor(
     private fb: FormBuilder,
-    private chirrupService: ChirrupService, // 使用 ChirrupService
+    private chirrupService: ChirrupService,
     private authService: AuthService
   ) {
     this.chirrupForm = this.fb.group({
@@ -39,12 +40,12 @@ export class NewChirrupComponent {
     const formData = this.chirrupForm.value;
     const currName = localStorage.getItem('userName');
 
-    const newChirrup = {
+    const newChirrup: Chirrup = {
       publisherName: currName || '',
       content: {
         text: formData.text,
-        image: formData.image || "image not available",
-        video: formData.video || "video not available"
+        image: formData.image || 'no image',
+        video: formData.video || 'no video'
       },
       publishedTime: new Date().toISOString(),
       comment: [],
@@ -53,7 +54,6 @@ export class NewChirrupComponent {
 
     this.chirrupService.postChirrup(newChirrup).subscribe({
       next: () => {
-        // this.chirrupService.notifyChirrupListRefresh();
         this.chirrupForm.reset();
         alert("You have successfully posted a new chirrup!");
       },

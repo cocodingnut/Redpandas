@@ -15,7 +15,7 @@ import { ChirrupService } from '../../services/chirrup.service';
 export class LikedPageComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];
   likedNews: Chirrup[] = [];
-  private refreshSubscription!: Subscription;
+  private refreshSubscription = new Subscription();
 
   constructor(private chirrupService: ChirrupService) { }
 

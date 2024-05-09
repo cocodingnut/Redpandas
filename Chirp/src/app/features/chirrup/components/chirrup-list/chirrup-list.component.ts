@@ -13,7 +13,7 @@ import { ChirrupService } from '../../services/chirrup.service';
 export class ChirrupListComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];
   newCommentText: string = '';
-  private refreshSubscription: Subscription;
+  private refreshSubscription = new Subscription();
 
   constructor(
     private commentService: CommentService,
@@ -21,11 +21,18 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
   ) { this.refreshSubscription = new Subscription(); }
 
   ngOnInit() {
-    this.refreshSubscription = this.chirrupService.news.subscribe(news => {
+    // this.refreshSubscription = this.chirrupService.news.subscribe(news => {
+    //   this.news = news;
+    // });
+    // this.chirrupService.loadChirrups();
+    this.refreshSubscription.add(this.chirrupService.news.subscribe(news => {
       this.news = news;
-    });
-
-    this.chirrupService.loadChirrups();
+    }));
+    // 订阅刷新通知
+    this.refreshSubscription.add(this.chirrupService.getChirrupListRefreshNotifier().subscribe(() => {
+      this.chirrupService.loadChirrups(); // 重新加载数据
+    }));
+    this.chirrupService.loadChirrups(); // 初始加载数据
   }
 
   ngOnDestroy() {

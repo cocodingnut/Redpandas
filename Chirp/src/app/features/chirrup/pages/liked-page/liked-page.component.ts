@@ -40,13 +40,9 @@ export class LikedPageComponent implements OnInit, OnDestroy {
   }
 
   toggleHeartIcon(chirrup: Chirrup) {
-    if (chirrup._id) {
-      const newLikeStatus = !chirrup.islike;
-      chirrup.islike = newLikeStatus;
-      localStorage.setItem(chirrup._id, newLikeStatus.toString());
-    } else {
-      console.error('Chirrup ID is undefined');
-    }
+    const newLikeStatus = !chirrup.islike;
+    chirrup.islike = newLikeStatus;
+    localStorage.setItem(chirrup._id, newLikeStatus.toString());
   }
 
   private getLikeStatusFromLocalStorage(id: string | undefined): boolean {

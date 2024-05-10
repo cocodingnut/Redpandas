@@ -1,4 +1,16 @@
 
+export interface ChirrupPost {
+    publisherName: string;
+    content: {
+        text: string,
+        image: string,
+        video: string
+    };
+    publishedTime: string;
+    comment: [];
+    likedIdList: [];
+}
+
 export interface Chirrup {
     _id: string;
     publisherName: string;
@@ -16,7 +28,7 @@ export interface Content {
     image?: string;
     video?: string;
     text: string;
-    _id?: string; // for post service
+    _id: string;
 }
 
 export interface Comment {

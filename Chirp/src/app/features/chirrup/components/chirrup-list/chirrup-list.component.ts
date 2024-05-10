@@ -22,7 +22,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
     this.refreshSubscription.add(this.chirrupService.news.subscribe(news => {
       this.news = news;
       this.news.forEach(chirrup => {
-        if (chirrup._id) { this.newCommentTexts[chirrup._id] = ''; }
+        this.newCommentTexts[chirrup._id] = '';
       });
     }));
   }
@@ -33,11 +33,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
   toggleHeartIcon(chirrup: Chirrup) {
     chirrup.islike = !chirrup.islike;
-    if (chirrup._id !== undefined) {
-      localStorage.setItem(chirrup._id, chirrup.islike.toString());
-    } else {
-      console.error('chirrup._id is undefined');
-    }
+    localStorage.setItem(chirrup._id, chirrup.islike.toString());
   };
 
   toggleCommentIcon(chirrup: Chirrup) {
@@ -58,7 +54,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
       publishedTime: new Date().toISOString()
     };
 
-    this.chirrupService.addComment(chirrup._id || '', newComment).subscribe({
+    this.chirrupService.addComment(chirrup._id, newComment).subscribe({
       next: _resp => {
         this.newCommentTexts[chirrup._id] = '';  // Clear the input field after adding the comment // not working?
         alert("You have successfully added a new comment!");

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, Subject, BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Chirrup, Comment } from '../../../core/models/chirrup'
+import { Chirrup, Comment, ChirrupPost } from '../../../core/models/chirrup'
 
 
 @Injectable({
@@ -46,11 +45,10 @@ export class ChirrupService {
   }
 
   // post new chirrup, update the newsSubject with transformed returned chirrup and originial newsSubject value
-  postChirrup(chirrup: any): Observable<Chirrup> {
+  postChirrup(chirrup: ChirrupPost): Observable<Chirrup> {
     const url = `${this.apiUrl}/news`;
     return this.http.post<Chirrup>(url, chirrup).pipe(
       map(newChirrup => {
-        console.log("newpost");
         this.updateNews([...this.newsSubject.value, this.transformChirrup(newChirrup)]);
         return newChirrup;
       }),
@@ -89,10 +87,8 @@ export class ChirrupService {
   // this transformChirrup function will add those properties before display them on the frontend
   private transformChirrup(chirrup: Chirrup): Chirrup {
     let isLiked = false;
-    if (chirrup._id !== undefined) {
-      const storedIsLiked = localStorage.getItem(chirrup._id);
-      isLiked = storedIsLiked === 'true';
-    }
+    const storedIsLiked = localStorage.getItem(chirrup._id);
+    isLiked = storedIsLiked === 'true';
     return {
       ...chirrup,
       islike: isLiked,

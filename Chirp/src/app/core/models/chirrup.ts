@@ -1,8 +1,8 @@
 
 export interface Chirrup {
-    _id?: string;
-    publisherName?: string;
-    content?: Content;
+    _id: string;
+    publisherName: string;
+    content: Content;
     publishedTime: string;
     comment: Comment[];
     likedIdList: LikedId[];

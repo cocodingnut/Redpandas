@@ -40,7 +40,7 @@ export class NewChirrupComponent {
     const formData = this.chirrupForm.value;
     const currName = localStorage.getItem('userName');
 
-    const newChirrup: Chirrup = {
+    const newChirrup: any = {
       publisherName: currName || '',
       content: {
         text: formData.text,

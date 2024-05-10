@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, Subject, BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Chirrup } from '../../../core/models/chirrup'
+import { Chirrup, Comment } from '../../../core/models/chirrup'
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,7 @@ export class ChirrupService {
   }
 
   // post new chirrup, update the newsSubject with transformed returned chirrup and originial newsSubject value
-  postChirrup(chirrup: Chirrup): Observable<Chirrup> {
+  postChirrup(chirrup: any): Observable<Chirrup> {
     const url = `${this.apiUrl}/news`;
     return this.http.post<Chirrup>(url, chirrup).pipe(
       map(newChirrup => {
@@ -67,9 +68,7 @@ export class ChirrupService {
         const updatedNews = this.newsSubject.value.map(chirrup => {
           if (chirrup._id === chirrupId) { // find that chirrup need update with new comment
             const updatedChirrup = { ...chirrup }; // copy that post
-            console.log("newComment");
-            console.log(newComment);
-            // updatedChirrup.comment.push(newComment); // edit that post
+            updatedChirrup.comment.push(newComment); // edit that post
             return updatedChirrup;
           }
           return chirrup;
@@ -97,7 +96,7 @@ export class ChirrupService {
     return {
       ...chirrup,
       islike: isLiked,
-      showComments: false
+      showComments: true //test
     };
   }
 }

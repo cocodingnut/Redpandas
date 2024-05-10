@@ -6,10 +6,7 @@ import { ChirrupService } from '../../services/chirrup.service';
 @Component({
   selector: 'app-liked-page',
   templateUrl: './liked-page.component.html',
-  styleUrls: [
-    './liked-page.component.sass',
-    '../../components/chirrup-list/chirrup-list.component.sass',
-  ]
+  styleUrls: ['./liked-page.component.sass',]
 })
 export class LikedPageComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];

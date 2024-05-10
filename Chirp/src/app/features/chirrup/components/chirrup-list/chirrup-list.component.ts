@@ -6,7 +6,7 @@ import { ChirrupService } from '../../services/chirrup.service';
 @Component({
   selector: 'app-chirrup-list',
   templateUrl: './chirrup-list.component.html',
-  styleUrls: ['./chirrup-list.component.sass', './chirrup-card.component.sass']
+  styleUrls: ['./chirrup-list.component.sass']
 })
 export class ChirrupListComponent implements OnInit, OnDestroy {
   news: Chirrup[] = [];

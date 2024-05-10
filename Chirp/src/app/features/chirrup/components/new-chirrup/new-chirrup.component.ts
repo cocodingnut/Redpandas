@@ -12,8 +12,7 @@ import { ChirrupPost, FormData } from '../../../../core/models/chirrup'
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
-  private loginSubscription = new Subscription();
-  isLogin: boolean = false;
+  isLogin: boolean | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +25,7 @@ export class NewChirrupComponent {
       video: ['']
     });
 
-    this.loginSubscription = this.authService.loginStatus.subscribe(update => {
+    this.authService.loginStatus.subscribe(update => {
       this.isLogin = update;
     });
   }
@@ -37,12 +36,11 @@ export class NewChirrupComponent {
       return;
     }
 
-
     const formData: FormData = this.chirrupForm.value;
     const currName: string | null = localStorage.getItem('userName');
 
     const newChirrup: ChirrupPost = {
-      publisherName: currName || '',
+      publisherName: (currName === null || !this.isLogin) ? '' : currName,
       content: {
         text: formData.text,
         image: formData.image || 'no image',
@@ -65,8 +63,7 @@ export class NewChirrupComponent {
     });
 
   }
-
   ngOnDestroy() {
-    this.loginSubscription.unsubscribe();
+    // this.loginSubscription.unsubscribe();
   }
 }

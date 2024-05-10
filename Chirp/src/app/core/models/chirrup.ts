@@ -23,7 +23,7 @@ export interface Comment {
     _id?: string; // Yuri, is this nessasary? we don't need them anyway --- Jimmy
     publisherName?: string;  // Optional because not all comments have a publisherName
     content?: Content;
-    publishedTime: string;
+    publishedTime?: string;
 }
 
 interface LikedId {

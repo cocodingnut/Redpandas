@@ -11,10 +11,10 @@ import { Chirrup } from '../../../core/models/chirrup'
 export class ChirrupService {
 
   private apiUrl: string = environment.apiUrl;
-  private _news: Chirrup[] = [];
   private newsSubject = new BehaviorSubject<Chirrup[]>([]);
 
   constructor(private http: HttpClient) { }
+
 
   get news(): Observable<Chirrup[]> {
     return this.newsSubject.asObservable();
@@ -26,11 +26,13 @@ export class ChirrupService {
     return this.http.get<Chirrup[]>(url);
   }
 
+  // use transformedData to update newsSubject
   private updateNews(data: Chirrup[]): void {
     const transformedData = data.map(this.transformChirrup.bind(this));
     this.newsSubject.next(transformedData);
   }
 
+  // get data from backend, transform it and update newsSubject
   loadChirrups() {
     this.getNews().subscribe({
       next: (data: Chirrup[]) => {
@@ -42,10 +44,12 @@ export class ChirrupService {
     });
   }
 
+  // post new chirrup, update the newsSubject with transformed returned chirrup and originial newsSubject value
   postChirrup(chirrup: Chirrup): Observable<Chirrup> {
     const url = `${this.apiUrl}/news`;
     return this.http.post<Chirrup>(url, chirrup).pipe(
       map(newChirrup => {
+        console.log("newpost");
         this.updateNews([...this.newsSubject.value, this.transformChirrup(newChirrup)]);
         return newChirrup;
       }),
@@ -55,6 +59,35 @@ export class ChirrupService {
     );
   }
 
+  // add new comment, update the newsSubject by editing originial newsSubject value: add returned comment to that post by id 
+  addComment(chirrupId: string, comment: Comment): Observable<Comment> {
+    const url = `${this.apiUrl}/news/addComment/${chirrupId}`;
+    return this.http.patch<Comment>(url, comment).pipe(
+      map(newComment => {
+        const updatedNews = this.newsSubject.value.map(chirrup => {
+          if (chirrup._id === chirrupId) { // find that chirrup need update with new comment
+            const updatedChirrup = { ...chirrup }; // copy that post
+            console.log("newComment");
+            console.log(newComment);
+            // updatedChirrup.comment.push(newComment); // edit that post
+            return updatedChirrup;
+          }
+          return chirrup;
+        });
+
+        this.updateNews(updatedNews);
+        return newComment;
+      }),
+
+      catchError(error => {
+        console.error('Error adding comment:', error);
+        throw error;
+      })
+    );
+  }
+
+  // the data get from backend do not have islike or showComments properties
+  // this transformChirrup function will add those properties before display them on the frontend
   private transformChirrup(chirrup: Chirrup): Chirrup {
     let isLiked = false;
     if (chirrup._id !== undefined) {
@@ -67,5 +100,4 @@ export class ChirrupService {
       showComments: false
     };
   }
-
 }

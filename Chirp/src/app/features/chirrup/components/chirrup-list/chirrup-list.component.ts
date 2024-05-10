@@ -21,11 +21,10 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    this.chirrupService.loadChirrups();
     this.refreshSubscription.add(this.chirrupService.news.subscribe(news => {
       this.news = news;
     }));
-
-    this.chirrupService.loadChirrups();
   }
 
   ngOnDestroy() {
@@ -62,7 +61,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
     this.commentService.addComment(chirrup._id || '', newComment).subscribe({
       next: _resp => {
-        newCommentText = '';
+        newCommentText = ''; //无法实际清空
         // After posting the comment, fetch the updated chirrups to display the new comment
         // this.loadChirrups();
         this.chirrupService.news;

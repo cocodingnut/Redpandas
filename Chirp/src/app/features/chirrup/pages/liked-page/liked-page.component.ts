@@ -31,7 +31,7 @@ export class LikedPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.refreshSubscription.unsubscribe();
-    localStorage.clear();
+    // localStorage.clear();
   }
 
   filterLikedNews() {

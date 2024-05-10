@@ -28,7 +28,7 @@ export class ProfileEditWindowComponent implements OnInit {
   }
 
   initForm() {
-    // const currentUser = this.userService.getCurrentUser();
+    // Display initial user info and will be used to collect updated user info
     this.userForm = this.fb.group({
       userName: [this.targetUser?.userName, Validators.required],
       userEmail: [this.targetUser?.userEmail, [Validators.required, Validators.email]],
@@ -43,6 +43,7 @@ export class ProfileEditWindowComponent implements OnInit {
     this.dialogCommunicationService.emitRegistrationSuccess();
   }
 
+  // update user info and close the edit profile window
   onSubmit() {
     if (this.userForm.valid) {
       const updatedProfileData: Profile = this.userForm.value;

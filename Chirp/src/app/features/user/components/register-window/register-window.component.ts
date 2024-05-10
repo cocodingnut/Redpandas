@@ -22,7 +22,7 @@ export class RegisterWindowComponent {
   ngOnInit(): void {
     this.initializeForm();
   }
-
+  // Form fields that require user to fill in to register a new account
   initializeForm() {
     this.registerForm = this.fb.group({
       username: ['',Validators.required, this.nameNotExistsValidator()],
@@ -53,17 +53,17 @@ export class RegisterWindowComponent {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const password: string = control.value;
       if (!password) {
-        return null; 
+        return null;
       }
-  
+
       const uppercaseRegex = /[A-Z]/;
       const lowercaseRegex = /[a-z]/;
       const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-  
+
       const hasUppercase = uppercaseRegex.test(password);
       const hasLowercase = lowercaseRegex.test(password);
       const hasSpecialChar = specialCharRegex.test(password);
-  
+
       return !hasUppercase || !hasLowercase || !hasSpecialChar ? { 'invalidPassword': true } : null;
     };
   }
@@ -72,7 +72,7 @@ export class RegisterWindowComponent {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const password = control.value;
       const confirmPassword = control.parent?.get(controlName)?.value;
-  
+
       return password === confirmPassword ? null : { 'passwordMismatch': true };
     };
   }
@@ -112,4 +112,3 @@ export class RegisterWindowComponent {
   }
 
 }
-

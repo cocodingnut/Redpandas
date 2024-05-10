@@ -19,6 +19,7 @@ export class UserInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // get current user's username from localstorage
     const currName = localStorage.getItem('userName');
     // TODO: logic refactor
     if (currName !== null) {

@@ -27,6 +27,7 @@ export class LoginWindowComponent {
     this.initializeForm();
   }
 
+  // Content of login-window, requesting user to input email and password, using customized validators to check if user are inputting correct email and password
   initializeForm() {
     this.loginForm = this.fb.group({
       email: ['', Validators.required, this.emailExistsValidator()],
@@ -59,7 +60,7 @@ export class LoginWindowComponent {
       )
     }
   }
-
+  // If user chooses to register, close login window, open register window
   openRegisterPopup() {
     this.onClosePopupDialog();
     this.dialogService.openPopUp(RegisterWindowComponent);

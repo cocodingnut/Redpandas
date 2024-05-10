@@ -9,7 +9,6 @@ import { ChirrupService } from '../../services/chirrup.service';
   styleUrls: [
     './liked-page.component.sass',
     '../../components/chirrup-list/chirrup-list.component.sass',
-    '../../../../shared/components/chirrup-card/chirrup-card.component.sass'
   ]
 })
 export class LikedPageComponent implements OnInit, OnDestroy {

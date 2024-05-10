@@ -56,7 +56,7 @@ export class ChirrupListComponent implements OnInit, OnDestroy {
 
     this.chirrupService.addComment(chirrup._id, newComment).subscribe({
       next: _resp => {
-        this.newCommentTexts[chirrup._id] = '';  // Clear the input field after adding the comment // not working?
+        this.newCommentTexts[chirrup._id] = '';  // Clear the input field after adding the comment 
         alert("You have successfully added a new comment!");
       },
       error: (_err: any) => console.log("Error posing new comment:", _err)

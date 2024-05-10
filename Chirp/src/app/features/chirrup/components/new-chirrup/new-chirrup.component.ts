@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ChirrupService } from '../../services/chirrup.service';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ChirrupPost } from '../../../../core/models/chirrup'
+import { ChirrupPost, FormData } from '../../../../core/models/chirrup'
 
 @Component({
   selector: 'app-new-chirrup',
@@ -37,8 +37,9 @@ export class NewChirrupComponent {
       return;
     }
 
-    const formData = this.chirrupForm.value;
-    const currName = localStorage.getItem('userName');
+
+    const formData: FormData = this.chirrupForm.value;
+    const currName: string | null = localStorage.getItem('userName');
 
     const newChirrup: ChirrupPost = {
       publisherName: currName || '',

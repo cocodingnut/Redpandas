@@ -11,7 +11,7 @@ import { Chirrup, Comment, ChirrupPost } from '../../../core/models/chirrup'
 export class ChirrupService {
 
   private apiUrl: string = environment.apiUrl;
-  private newsSubject = new BehaviorSubject<Chirrup[]>([]);
+  private newsSubject: BehaviorSubject<Chirrup[]> = new BehaviorSubject<Chirrup[]>([]);
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class ChirrupService {
   }
 
   // retrieve news items from the backend
-  getNews(): Observable<Chirrup[]> {
+  private getNews(): Observable<Chirrup[]> {
     const url = `${this.apiUrl}/news`;
     return this.http.get<Chirrup[]>(url);
   }
@@ -33,7 +33,7 @@ export class ChirrupService {
   }
 
   // get data from backend, transform it and update newsSubject
-  loadChirrups() {
+  loadChirrups(): void {
     this.getNews().subscribe({
       next: (data: Chirrup[]) => {
         this.updateNews(data);
@@ -86,8 +86,8 @@ export class ChirrupService {
   // the data get from backend do not have islike or showComments properties
   // this transformChirrup function will add those properties before display them on the frontend
   private transformChirrup(chirrup: Chirrup): Chirrup {
-    let isLiked = false;
-    const storedIsLiked = localStorage.getItem(chirrup._id);
+    let isLiked: boolean = false;
+    const storedIsLiked: string | null = localStorage.getItem(chirrup._id);
     isLiked = storedIsLiked === 'true';
     return {
       ...chirrup,

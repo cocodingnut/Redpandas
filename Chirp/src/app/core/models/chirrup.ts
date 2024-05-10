@@ -10,6 +10,11 @@ export interface ChirrupPost {
     comment: [];
     likedIdList: [];
 }
+export interface FormData {
+    text: string;
+    image?: string;
+    video?: string;
+}
 
 export interface Chirrup {
     _id: string;

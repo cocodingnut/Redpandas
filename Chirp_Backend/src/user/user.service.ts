@@ -23,7 +23,18 @@ export class UserService {
       age: 9,
       gender: "Female",
       phone: 5148101919,
-    }
+    },
+    {
+      "_id": "6209c0d87166c25a276912d6",
+      "name": "Honey",
+      "userName": "Honey",
+      "userEmail": "honey@test.com",
+      "password": "honey",
+      "userRole": "user",
+      "age": 11,
+      "gender": "Female",
+      "phone": 1234567890,
+    },
   ];
 
   create(createUserDto: CreateUserDto) {
@@ -31,11 +42,18 @@ export class UserService {
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.dummyUserList;
   }
 
-  findOneId(id: number) {
-    return `This action returns a #${id} user`;
+  findOneName(name: string) {
+    const user = this.dummyUserList.find((user) => user.userName === name);
+    if (!user) {
+      throw new HttpException(
+        'Cannot find this user.',
+        HttpStatus.NOT_FOUND
+      )
+    }
+    return user;
   }
 
   findOneEmail(userEmail: string) {

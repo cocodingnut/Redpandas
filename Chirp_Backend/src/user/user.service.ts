@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from 'src/models/user';
@@ -39,7 +39,14 @@ export class UserService {
   }
 
   findOneEmail(userEmail: string) {
-    return `This action returns a #${userEmail} user`;
+    const user = this.dummyUserList.find((user) => user.userEmail === userEmail);
+    if (!user) {
+      throw new HttpException(
+        'Cannot find this email.',
+        HttpStatus.NOT_FOUND
+      )
+    }
+    return user;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

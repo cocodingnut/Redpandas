@@ -1,4 +1,4 @@
-import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post, Res } from '@nestjs/common';
 import { UserService } from '../user.service';
 import { randomUUID } from 'crypto';
 
@@ -8,6 +8,12 @@ export class LoginController {
     
     @Post()
     login(@Body() body) {
+        if (!this.validator(body)) {
+            throw new HttpException(
+                'body data incomplete.',
+                HttpStatus.BAD_REQUEST
+              )
+        }
         let user = this.userService.findOneEmail(body.userEmail);
         const validPassword = user.password === body.password;
         if (!validPassword) {
@@ -18,5 +24,9 @@ export class LoginController {
         }
         const token = randomUUID().toString();
         return {...user, token: token};
+    }
+
+    validator(body: any): boolean {
+        return body.userEmail && body.password;
     }
 }

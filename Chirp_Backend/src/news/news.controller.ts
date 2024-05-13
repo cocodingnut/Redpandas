@@ -1,15 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
+import { randomUUID } from 'crypto';
 
-@Controller('news')
+@Controller('api/news')
 export class NewsController {
-  constructor(private readonly newsService: NewsService) {}
+  constructor(private readonly newsService: NewsService) { }
 
   @Post()
-  create(@Body() createNewsDto: CreateNewsDto) {
-    return this.newsService.create(createNewsDto);
+  create(@Body() body) {
+    if (!this.validatorChirrup(body)) {
+      throw new HttpException(
+        'body data incomplete.',
+        HttpStatus.BAD_REQUEST
+      )
+    }
+    const chirrup = {
+      _id: randomUUID().toString(),
+      ...body
+    };
+    this.newsService.createTemp(chirrup);
+    return chirrup;
   }
 
   @Get()
@@ -19,16 +31,31 @@ export class NewsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.newsService.findOne(+id);
+    const story = this.newsService.findOne(id);
+    if (!story) {
+      throw new HttpException(
+        'Story not found.',
+        HttpStatus.NOT_FOUND
+      )
+    }
+    return story;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNewsDto: UpdateNewsDto) {
-    return this.newsService.update(+id, updateNewsDto);
+  @Patch('/addComment/:id')
+  update(@Param('id') id: string, @Body() body) {
+    const comment = {
+      _id: randomUUID().toString(),
+      ...body
+    }
+    return this.newsService.updateComment(id, comment);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.newsService.remove(+id);
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.newsService.remove(+id);
+  // }
+
+  validatorChirrup(body: any): boolean {
+    return body.publisherName;
   }
 }

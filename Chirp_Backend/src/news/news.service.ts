@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
-import { Chirrup } from 'src/models/chirrup';
+import { Chirrup, Comment } from 'src/models/chirrup';
 
 @Injectable()
 export class NewsService {
@@ -76,20 +76,37 @@ export class NewsService {
     }
   ]
 
-  create(createNewsDto: CreateNewsDto) {
-    return 'This action adds a new news';
+  // create(createNewsDto: CreateNewsDto) {
+  //   return 'This action adds a new news';
+  // }
+
+  createTemp(story: Chirrup) {
+    this.dummyNewsList.push(story);
   }
 
   findAll() {
-    return `This action returns all news`;
+    return this.dummyNewsList;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} news`;
+  findOne(id: string) {
+    return this.dummyNewsList.find((story) => story._id === id);
   }
 
   update(id: number, updateNewsDto: UpdateNewsDto) {
     return `This action updates a #${id} news`;
+  }
+
+  updateComment(chirrupId: string, comment: Comment) {
+    const storyToEdit = this.dummyNewsList.find((story) => story._id === chirrupId);
+    if (!storyToEdit) {
+      throw new HttpException(
+        'Story not found.',
+        HttpStatus.NOT_FOUND
+      )
+    }
+    storyToEdit.comment.push(comment);
+
+    return comment;
   }
 
   remove(id: number) {

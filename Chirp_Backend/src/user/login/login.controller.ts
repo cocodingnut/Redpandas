@@ -8,7 +8,7 @@ export class LoginController {
 
     @Post()
     login(@Body() body) {
-        if (!this.validator(body)) {
+        if (!this.validatorLogin(body)) {
             throw new HttpException(
                 'body data incomplete.',
                 HttpStatus.BAD_REQUEST
@@ -32,7 +32,7 @@ export class LoginController {
         return { ...user, token: token };
     }
 
-    validator(body: any): boolean {
+    validatorLogin(body: any): boolean {
         return body.userEmail && body.password;
     }
 }

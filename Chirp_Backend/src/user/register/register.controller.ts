@@ -9,7 +9,7 @@ export class RegisterController {
 
     @Post('createNewAccount')
     createNewAccount(@Body() body) {
-        if (!this.validator(body)) {
+        if (!this.validatorRegister(body)) {
             throw new HttpException(
                 'body data incomplete.',
                 HttpStatus.BAD_REQUEST
@@ -73,7 +73,7 @@ export class RegisterController {
         return true;
     }
 
-    validator(body: any): boolean {
+    validatorRegister(body: any): boolean {
         return body.userEmail && body.password && body.userName;
     }
 }

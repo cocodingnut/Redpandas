@@ -42,6 +42,7 @@ export class UserService {
   }
 
   createTemp(createUser: User) {
+    this.dummyUserList.push(createUser);
     return 'This action adds a new user';
   }
 
@@ -49,14 +50,16 @@ export class UserService {
     return this.dummyUserList;
   }
 
-  findOneName(name: string) {
-    const user = this.dummyUserList.find((user) => user.userName === name);
-    return user;
+  findOneByName(name: string) {
+    return this.dummyUserList.find((user) => user.userName === name);
   }
 
-  findOneEmail(userEmail: string) {
-    const user = this.dummyUserList.find((user) => user.userEmail === userEmail);
-    return user;
+  findOneByEmail(userEmail: string) {
+    return this.dummyUserList.find((user) => user.userEmail === userEmail);
+  }
+
+  findOneById(id: string) {
+    return this.dummyUserList.find((user) => user._id === id);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

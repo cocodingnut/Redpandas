@@ -5,7 +5,7 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Controller('api/users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get('getAllUsers')
   findAll() {
@@ -14,7 +14,7 @@ export class UserController {
 
   @Get('/getProfile/:username')
   findOne(@Param('username') name: string) {
-    const user =this.userService.findOneName(name)
+    const user = this.userService.findOneByName(name)
     if (!user) {
       throw new HttpException(
         'Cannot find this user.',
@@ -24,7 +24,7 @@ export class UserController {
     return user;
   }
 
-  
+
   // @Post()
   // create(@Body() createUserDto: CreateUserDto) {
   //   return this.userService.create(createUserDto);

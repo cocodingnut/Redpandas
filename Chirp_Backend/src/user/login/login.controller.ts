@@ -14,7 +14,7 @@ export class LoginController {
                 HttpStatus.BAD_REQUEST
             )
         }
-        const user = this.userService.findOneEmail(body.userEmail);
+        const user = this.userService.findOneByEmail(body.userEmail);
         if (!user) {
             throw new HttpException(
                 'Cannot find this email.',

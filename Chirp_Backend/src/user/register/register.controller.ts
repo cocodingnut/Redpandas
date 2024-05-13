@@ -1,4 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 
-@Controller('register')
-export class RegisterController {}
+@Controller('api/register')
+export class RegisterController {
+    @Post('createNewAccount')
+    createNewAccount() {
+        return 'newUserRegister';
+    }
+}

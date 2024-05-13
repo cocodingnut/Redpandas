@@ -1,56 +1,57 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DialogCommunicationService } from '../register-window/dialog-communication.service';
-import { ChangePasswordWindowComponent } from '../change-password-window/change-password-window.component';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ChangePasswordWindowComponent } from '../../components/change-password-window/change-password-window.component';
+import { ThemeService } from 'src/app/core/services/theme.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.sass']
 })
-export class SettingsPageComponent implements OnInit, OnDestroy {
+export class SettingsPageComponent implements OnInit {
 
-  ref: DynamicDialogRef | undefined;
-  private unsubscribe$ = new Subject<void>();
+  isDark = false;
+  
+  private _isLogin: boolean = false;
 
   constructor(    
-    private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService
+    private themeService: ThemeService,
+    private router: Router,
+    private authService: AuthService,
+    private dialogService: DialogControlService,
   ) { }
 
   ngOnInit(): void {
+    this.isDark = this.themeService.getCurrentTheme() === 'lara-dark-indigo';
+    this.authService.loginStatus.subscribe(update => {
+      this._isLogin = update;
+    })
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+  onToggleTheme() {
+    if (this.isDark) {
+      this.themeService.setTheme("lara-dark-indigo");
+    } else {
+      this.themeService.setTheme("lara-light-indigo");
+    }
   }
 
   onClickPassword() {
-
-    try {
-      this.ref = this.dialogService.open(ChangePasswordWindowComponent, {
-        width: '25rem',
-        showHeader: false,
-        contentStyle: {
-          "max-height": "600px",
-          "overflow": "auto",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
-        }
-      });
-
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
-        this.closeDialog();
-      })
-    } catch (error) {
-      console.error('Error opening dialog:', error);
+    if (this._isLogin) {
+      this.dialogService.openPopUp(ChangePasswordWindowComponent);
     }
   }
 
-  closeDialog() {
-    if (this.ref) {
-      this.ref.close();
-    }
+  onClickAdmin() {
+    this.router.navigate(['admin']);
+  }
+
+  onLogOut() {
+    localStorage.setItem("userName", '');
+    localStorage.setItem("userRole", '');
+    this.authService.changeLoginStatus(false);
+    alert('See you later');
   }
 }

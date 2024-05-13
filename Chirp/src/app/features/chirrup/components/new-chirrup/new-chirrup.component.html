@@ -5,7 +5,7 @@
         </div>
         <div class="input-container">
             <i class="pi pi-pencil"></i>
-            <input type="text" formControlName="text" placeholder="Share something......">
+            <textarea type="text" formControlName="text" placeholder="Share something......"></textarea>
         </div>
     </header>
 
@@ -21,7 +21,9 @@
         </div>
 
         <div class="post-button">
-            <p-button (onClick)="postChirrup()">post </p-button>
+            <!-- post will be blocked either user not logged in or give an empty content -->
+            <p-button label="post" (onClick)="onClickSubmitChirrup()"
+                [disabled]="!isLogin || chirrupForm.invalid"></p-button>
         </div>
 
     </footer>

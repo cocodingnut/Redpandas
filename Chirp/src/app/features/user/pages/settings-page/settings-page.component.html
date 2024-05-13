@@ -1,12 +1,12 @@
 
 <div class="header">
-    <h1>Settings</h1>
+    <h1 class="h1-br-theme">Settings</h1>
 </div>
 <div class="page-container">
     <div class="settings-format">
         <div class="setting">
             <p>Dark Mode</p>
-            <p-inputSwitch class="toggle"></p-inputSwitch>
+            <p-inputSwitch class="toggle" [(ngModel)]="isDark" (onChange)="onToggleTheme()"></p-inputSwitch>
         </div>
         <div class="setting" (click)="onClickPassword()">
             <p>Password</p>
@@ -15,7 +15,7 @@
                 <span class="pi pi-chevron-right pi-lg"></span>
             </div>
         </div>
-        <div class="setting">
+        <div class="setting" (click)="onClickAdmin()">
             <p>Admin Page</p>
             <div class="action">
                 <p>Go</p>
@@ -24,6 +24,6 @@
         </div>
     </div>
     <div class="btn">
-        <button class="logoutBtn">Log Out</button>
+        <p-button label="Log Out" (click)="onLogOut()"></p-button>
     </div>
 </div>

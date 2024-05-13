@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PostService } from '../../services/post.service';
-import { SharedService } from '../../services/shared.service';
+import { Subscription } from 'rxjs';
+import { ChirrupService } from '../../services/chirrup.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { ChirrupPost, FormData } from '../../../../core/models/chirrup'
 
 @Component({
   selector: 'app-new-chirrup',
@@ -10,44 +12,58 @@ import { SharedService } from '../../services/shared.service';
 })
 export class NewChirrupComponent {
   chirrupForm: FormGroup;
+  isLogin: boolean | undefined;
 
   constructor(
     private fb: FormBuilder,
-    private PostService: PostService,
-    private sharedService: SharedService
-
+    private chirrupService: ChirrupService,
+    private authService: AuthService
   ) {
     this.chirrupForm = this.fb.group({
       text: ['', Validators.required],
       image: [''],
       video: ['']
     });
+
+    this.authService.loginStatus.subscribe(update => {
+      this.isLogin = update;
+    });
   }
 
-  postChirrup() {
-    const formData = this.chirrupForm.value;
+  onClickSubmitChirrup() {
+    if (!this.isLogin) {
+      alert("Please log in to post a chirrup.");
+      return;
+    }
 
-    const newChirrup = {
-      publisherName: "Felix",
+    const formData: FormData = this.chirrupForm.value;
+    const currName: string | null = localStorage.getItem('userName');
+
+    const newChirrup: ChirrupPost = {
+      publisherName: (currName === null || !this.isLogin) ? '' : currName,
       content: {
-        // image: "image not available",
-        // video: "video not available",
-        text: formData.text
+        text: formData.text,
+        image: formData.image || 'no image',
+        video: formData.video || 'no video'
       },
       publishedTime: new Date().toISOString(),
       comment: [],
       likedIdList: []
-    }
+    };
 
-
-    this.PostService.postChirrup(newChirrup).subscribe({
+    this.chirrupService.postChirrup(newChirrup).subscribe({
       next: () => {
-        // 发送成功后通知 chirrup-list 组件刷新
-        this.sharedService.notifyChirrupListRefresh();
-        // 清空表单
         this.chirrupForm.reset();
+        alert("You have successfully posted a new chirrup!");
       },
-      error: (error: any) => console.error('Failed to post chirrup:', error)
+      error: (error: any) => {
+        console.error('Failed to post chirrup:', error);
+        alert("Failed to post chirrup. Please try again.");
+      }
     });
+
+  }
+  ngOnDestroy() {
+    // this.loginSubscription.unsubscribe();
   }
 }

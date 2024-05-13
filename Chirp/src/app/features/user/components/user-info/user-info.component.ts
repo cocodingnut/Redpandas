@@ -1,63 +1,36 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ProfileEditWindowComponent } from '../../pages/profile-edit-window/profile-edit-window.component';
-import { DialogCommunicationService } from '../../pages/register-window/dialog-communication.service';
-import { Subject } from 'rxjs';
-import { UserService } from 'src/app/shared/services/user.service';
-import { User } from 'src/app/core/models/user';
+import { Component, OnInit } from '@angular/core';
+import { ProfileEditWindowComponent } from '../profile-edit-window/profile-edit-window.component';
+import { UserService } from 'src/app/core/services/user.service';
+import { Profile } from 'src/app/core/models/profile';
+import { DialogControlService } from 'src/app/core/services/dialog-control.service';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.sass']
 })
-export class UserInfoComponent implements OnDestroy {
+export class UserInfoComponent implements OnInit {
 
-  ref: DynamicDialogRef | undefined;
-  private unsubscribe$ = new Subject<void>();
+  user: Profile | undefined;
 
   constructor(
-    private dialogService: DialogService,
-    private dialogCommunicationService: DialogCommunicationService,
-    private userService: UserService
+    private userService: UserService,
+    private dialogService: DialogControlService
   ) { }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  user = this.userService.getCurrentUser();
-  getUserInfo(): void {
-    this.user = this.userService.getCurrentUser();
-  }
-  openProfileEditPopup(event: Event) {
-    event.preventDefault();
-
-    try {
-      this.ref = this.dialogService.open(ProfileEditWindowComponent, {
-        width: '25rem',
-        showHeader: false,
-        contentStyle: {
-          "max-height": "650px",
-          "overflow": "auto",
-          "border-radius": "25px" // Optional: Add border-radius for rounded corners
-        }
-      });
-
-      this.dialogCommunicationService.registrationSuccess$.subscribe(() => {
-        this.closeDialog();
-      })
-    } catch (error) {
-      console.error('Error opening dialog:', error);
+  ngOnInit(): void {
+    const currName = localStorage.getItem('userName');
+    // TODO: logic refactor
+    if (currName !== null) {
+      this.userService.getUserInfo(currName);
     }
+    this.userService.currentUser.subscribe(update => {
+      this.user = update;
+    })
   }
 
-  closeDialog() {
-    if (this.ref) {
-      this.getUserInfo();
-      this.ref.close();
-    }
+  openProfileEditPopup() {
+    this.dialogService.openPopUp(ProfileEditWindowComponent);
   }
 
   selectedButton = 'Posts';

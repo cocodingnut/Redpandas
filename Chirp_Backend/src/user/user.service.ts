@@ -41,29 +41,21 @@ export class UserService {
     return 'This action adds a new user';
   }
 
+  createTemp(createUser: User) {
+    return 'This action adds a new user';
+  }
+
   findAll() {
     return this.dummyUserList;
   }
 
   findOneName(name: string) {
     const user = this.dummyUserList.find((user) => user.userName === name);
-    if (!user) {
-      throw new HttpException(
-        'Cannot find this user.',
-        HttpStatus.NOT_FOUND
-      )
-    }
     return user;
   }
 
   findOneEmail(userEmail: string) {
     const user = this.dummyUserList.find((user) => user.userEmail === userEmail);
-    if (!user) {
-      throw new HttpException(
-        'Cannot find this email.',
-        HttpStatus.NOT_FOUND
-      )
-    }
     return user;
   }
 

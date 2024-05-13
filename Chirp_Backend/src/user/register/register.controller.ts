@@ -57,7 +57,7 @@ export class RegisterController {
 
     @Get('checkExistByEmail/:userEmail')
     checkExistByEmail(@Param('userEmail') email: string) {
-        const user = this.userService.findOneById(email)
+        const user = this.userService.findOneByEmail(email)
         if (!user) {
             return false;
         }
@@ -66,7 +66,7 @@ export class RegisterController {
 
     @Get('checkExistByUsername/:username')
     checkExistByUsername(@Param('username') name: string) {
-        const user = this.userService.findOneById(name)
+        const user = this.userService.findOneByName(name)
         if (!user) {
             return false;
         }

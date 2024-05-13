@@ -35,6 +35,13 @@ export class UserService {
       "gender": "Female",
       "phone": 1234567890,
     },
+    {
+      "_id": "6636ee3f1304301f54c88654",
+      "userName": "mercury",
+      "userEmail": "mercury@gmail.com",
+      "password": "$2a$10$2BFk00oERs970aMCdmRyQOvcaDMDX4Ig.cenEoeGvPGegiWNDUjm.",
+      "userRole": "user",
+  },
   ];
 
   create(createUserDto: CreateUserDto) {

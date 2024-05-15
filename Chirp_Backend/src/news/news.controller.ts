@@ -41,15 +41,16 @@ export class NewsController {
     return story;
   }
 
-  @Patch('/addComment/:id')
+  @Patch('addComment/:id')
   update(@Param('id') id: string, @Body() body) {
     const comment = {
-      _id: randomUUID().toString(),
-      ...body
+      ...body,
+      _id: randomUUID().toString()
     }
     return this.newsService.updateComment(id, comment);
   }
 
+  // TODO: Delete requests
   // @Delete(':id')
   // remove(@Param('id') id: string) {
   //   return this.newsService.remove(+id);

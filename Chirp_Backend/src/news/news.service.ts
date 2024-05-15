@@ -92,9 +92,9 @@ export class NewsService {
     return this.dummyNewsList.find((story) => story._id === id);
   }
 
-  update(id: number, updateNewsDto: UpdateNewsDto) {
-    return `This action updates a #${id} news`;
-  }
+  // update(id: number, updateNewsDto: UpdateNewsDto) {
+  //   return `This action updates a #${id} news`;
+  // }
 
   updateComment(chirrupId: string, comment: Comment) {
     const storyToEdit = this.dummyNewsList.find((story) => story._id === chirrupId);
@@ -109,7 +109,7 @@ export class NewsService {
     return comment;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} news`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} news`;
+  // }
 }
